@@ -1,1 +1,1 @@
-# azure-shop
+# Azure Cloud Practitioner Program
