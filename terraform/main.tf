@@ -61,30 +61,9 @@ resource "azurerm_service_plan" "product_service_plan" {
 }
 
 
-resource "azurerm_linux_function_app" "products_function_app" {
-  name                       = "fa-products-svc-06-10-2024"
-  location                   = azurerm_resource_group.front_end_rg.location
-  resource_group_name         = azurerm_resource_group.front_end_rg.name
-  storage_account_name        = azurerm_storage_account.front_end_storage_account.name
-  storage_account_access_key  = azurerm_storage_account.front_end_storage_account.primary_access_key
-  service_plan_id             = azurerm_service_plan.function_app_plan.id
-
-  site_config {
-    # Minimum block requirement
-    application_stack {
-      node_version = "18"
-    }
-  }
-
-  app_settings = {
-    "FUNCTIONS_WORKER_RUNTIME" = "node"
-  }
-}
-
-
 # Define the Windows-based Function App
 resource "azurerm_windows_function_app" "products_service" {
-  name                = "fa-products-svc-07-10-2024"
+  name                = "fa-products-svc-07-10"
   location            = azurerm_resource_group.front_end_rg.location
   resource_group_name = azurerm_resource_group.front_end_rg.name
   service_plan_id     = azurerm_service_plan.product_service_plan.id
